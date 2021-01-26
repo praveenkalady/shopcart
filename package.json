@@ -1,0 +1,25 @@
+{
+  "name": "shopcart",
+  "version": "1.0.0",
+  "description": "MERN stack ecommerce app.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon backend/server",
+    "data:delete": "node backend/seeder -d",
+    "data:import": "node backend/seeder"
+  },
+  "author": "Praveen kv",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "global": "^4.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.13",
+    "nodemon": "^2.0.7"
+  }
+}
