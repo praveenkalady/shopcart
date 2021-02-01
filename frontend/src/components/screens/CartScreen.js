@@ -10,14 +10,15 @@ const CartScreen = ({ match,location,history }) => {
     const id = match.params.id;
     const qty = location.search ? Number(location.search.split('=')[1]) : 1;
     const { cartItems } = useSelector(state => state.cart);
+    const { userInfo } = useSelector(state => state.userLogin);
     const checkoutHandler = () => {
         history.push('/login?redirect=shipping');
     }
     useEffect(()=>{
-        if(id){
+        if(id && userInfo){
             dispatch(addToCart(id,qty));
         }
-    },[id,dispatch,qty])
+    },[id,dispatch,qty,cartItems,userInfo])
     return (
         <>
         <h1>Your Shopping Cart</h1>
@@ -60,7 +61,7 @@ const CartScreen = ({ match,location,history }) => {
                     <ListGroup variant="flush" >
                         <ListGroup.Item>
                             <h2>Subtotal ({cartItems.reduce((acc,item)=>acc + item.qty,0)})items</h2>
-                            ${cartItems.reduce((acc,item)=>acc + item.qty * item.price,0)}
+                            ${cartItems.reduce((acc,item)=>acc + item.qty * item.price,0).toFixed(2)}
                         </ListGroup.Item>
                         <ListGroup.Item>
                             <Button onClick={checkoutHandler} type="button" className="btn-block">Proceed To Checkout</Button>
